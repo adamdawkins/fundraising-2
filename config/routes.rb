@@ -1,7 +1,27 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  root "home#index"
   mount Sidekiq::Web => "/sidekiq" # monitoring console
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users, path: 'users'
+  devise_for :admins, path: 'admin'
+
+  namespace :admin do
+    resources :dashboard
+    resources :events
+    resources :campaigns do
+      resources :offline_donation
+    end
+  end
+
+  post '/hooks' => 'hooks#stripe'
+  get '/my-campaigns', to: 'my_campaigns#index'
+  resources :charities
+  resources :events do
+    resources :campaigns do
+      resources :donations do
+        get 'payment'
+      end
+    end
+  end
+  root to: "home#index"
 end

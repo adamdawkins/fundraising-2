@@ -8,13 +8,14 @@ ruby "2.6.0"
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", ">= 1.4.2", require: false
 gem "coffee-rails"
+gem "devise"
+gem "friendly_id"
 gem "pg", ">= 0.18"
 gem "puma", "~> 4.1"
 gem "rails", "~> 6.0.2.1"
+gem "ros-apartment", require: "apartment"
 gem "sass-rails", "~> 6.0"
-
 gem "sidekiq"
-
 gem "turbolinks", "~> 5"
 gem "webpacker", "~> 4.0"
 
@@ -27,6 +28,7 @@ group :development do
   gem "dotenv-rails"
   gem "listen", ">= 3.0.5"
   gem "pry-rails" # A much better console than IRB
+  gem "rails-erd", require: false # Generates ERD diagrams of your schema
   gem "rubocop-rails", require: false
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
