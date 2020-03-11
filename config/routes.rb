@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post '/hooks' => 'hooks#stripe'
   get '/my-campaigns', to: 'my_campaigns#index'
   resources :charities
-  resources :events, only: :show do
+  resources :events, only: [:index, :show] do
     resources :campaigns do
       resources :donations do
         get 'payment'

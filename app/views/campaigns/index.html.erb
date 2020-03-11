@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Campaigns</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Donations target</th>
+      <th>Hidden</th>
+      <th>Name</th>
+      <th>Slug</th>
+      <th>Event</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @campaigns.each do |campaign| %>
+      <tr>
+        <td><%= campaign.description %></td>
+        <td><%= campaign.donations_target %></td>
+        <td><%= campaign.hidden %></td>
+        <td><%= campaign.name %></td>
+        <td><%= campaign.slug %></td>
+        <td><%= campaign.event_id %></td>
+        <td><%= campaign.user_id %></td>
+        <td><%= link_to 'Show', campaign %></td>
+        <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
+        <td><%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Campaign', new_campaign_path %>
